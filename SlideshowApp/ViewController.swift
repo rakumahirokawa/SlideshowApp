@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var fruitsImage: UIImageView!
     @IBOutlet weak var startstop: UIButton!
-    @IBOutlet weak var `return`: UIButton!
+    @IBOutlet weak var returnButton: UIButton!
     @IBOutlet weak var forward: UIButton!
     
     
@@ -32,17 +32,6 @@ class ViewController: UIViewController {
         fruitsImage.image = imageArray[nowIndex]
     }
     
-    
-    @IBAction func `return`(_ sender: Any) {
-        nowIndex -= 1
-        
-        if (nowIndex == -1) {
-            // indexを一番最初の数字に戻す
-            nowIndex = imageArray.count-1
-        }
-        fruitsImage.image = imageArray[nowIndex]
-    }
-    
     @IBAction func forward(_ sender: Any) {
         // indexを増やして表示する画像を切り替える
         nowIndex += 1
@@ -56,6 +45,16 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func returnButton(_ sender: Any) {
+        nowIndex -= 1
+        
+        if (nowIndex == -1) {
+            // indexを一番最初の数字に戻す
+            nowIndex = imageArray.count-1
+        }
+        fruitsImage.image = imageArray[nowIndex]
+    }
+    
     
     @IBAction func startimage(_ sender: Any) {
         // 再生中か停止しているかを判定
@@ -66,9 +65,9 @@ class ViewController: UIViewController {
             
             // ボタンの名前を停止に変える
             startstop.setTitle("停止", for: .normal)
-            `return`.isEnabled = false
+            returnButton.isEnabled = false
             forward.isEnabled = false
-            `return`.alpha = 0.3;
+            returnButton.alpha = 0.3;
             forward.alpha = 0.3;
             
         } else {
@@ -81,9 +80,9 @@ class ViewController: UIViewController {
             
             // ボタンの名前を再生に直しておく
             startstop.setTitle("再生", for: .normal)
-            `return`.isEnabled = true
+            returnButton.isEnabled = true
             forward.isEnabled = true
-            `return`.alpha = 1.0;
+            returnButton.alpha = 1.0;
             forward.alpha = 1.0;
         }
     }
@@ -102,15 +101,29 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-           // segueから遷移先のexpansionViewControllerを取得する
-           let expansionViewController:ExpansionViewController = segue.destination as! ExpansionViewController
-           // 遷移先のexpansionViewControllerで宣言しているx, yに値を代入して渡す
-        expansionViewController.x = imageArray[nowIndex]
-       }
+        // segueから遷移先のexpansionViewControllerを取得する
+        let expansionViewController:ExpansionViewController = segue.destination as! ExpansionViewController
+        // 遷移先のexpansionViewControllerで宣言しているx, yに値を代入して渡す
+        expansionViewController.image = imageArray[nowIndex]
+        
+        if (timer != nil) {
+            timer.invalidate()
+            
+            // タイマーを削除しておく(timer.invalidateだけだとtimerがnilにならないため)
+            timer = nil
+            
+            // ボタンの名前を再生に直しておく
+            startstop.setTitle("再生", for: .normal)
+            returnButton.isEnabled = true
+            forward.isEnabled = true
+            returnButton.alpha = 1.0;
+            forward.alpha = 1.0;
+        }
+    }
     
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
     }
-
+    
     
     
     

@@ -26,7 +26,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="return:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Fa-pB-hKJ"/>
+                                    <action selector="returnButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kzo-N2-PNz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffr-2x-3pu">
@@ -65,7 +65,7 @@
                     <connections>
                         <outlet property="forward" destination="ffr-2x-3pu" id="HUc-AC-ND6"/>
                         <outlet property="fruitsImage" destination="EQ4-w1-cfZ" id="2E8-Cp-oEb"/>
-                        <outlet property="return" destination="udq-lL-0f4" id="IZO-TK-eIh"/>
+                        <outlet property="returnButton" destination="udq-lL-0f4" id="Mt3-Uj-tSO"/>
                         <outlet property="startstop" destination="wgk-I5-RXD" id="8A8-BJ-vNS"/>
                     </connections>
                 </viewController>

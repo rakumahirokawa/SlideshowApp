@@ -11,12 +11,14 @@ class ExpansionViewController: UIViewController {
     @IBOutlet weak var expansionImage: UIImageView!
     
     
-    var x: UIImage!
+    var image: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        expansionImage.image = x
+        expansionImage.image = image
+        // 再生中か停止しているかを判定
+
 
 
     }
